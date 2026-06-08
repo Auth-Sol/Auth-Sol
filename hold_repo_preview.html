@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0a0a0a;
+    color: #f0ece0;
+    font-family: 'DM Mono', monospace;
+    padding: 0;
+  }
+
+  .readme {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .header {
+    border: 1px solid #c9a84c;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .header::before, .header::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    border-color: #c9a84c;
+    border-style: solid;
+  }
+  .header::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .header::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    letter-spacing: 0.18em;
+    color: #c9a84c;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .badges {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border: 0.5px solid;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .badge-gold { border-color: #c9a84c; color: #c9a84c; }
+  .badge-white { border-color: #f0ece0; color: #f0ece0; }
+  .badge-green { border-color: #4caf70; color: #4caf70; }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 8px 18px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+  }
+
+  .btn-gold {
+    background: #c9a84c;
+    color: #0a0a0a;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #c9a84c;
+    border: 1px solid #c9a84c;
+  }
+
+  .btn:hover { opacity: 0.8; }
+
+  .divider {
+    border: none;
+    border-top: 0.5px solid #2a2a2a;
+    margin: 1.5rem 0;
+  }
+
+  .gold-divider {
+    border: none;
+    border-top: 0.5px solid #c9a84c44;
+    margin: 1.5rem 0;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: #c9a84c;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 1.8;
+    color: #b0ab9c;
+    margin-bottom: 0.75rem;
+  }
+
+  p strong {
+    color: #f0ece0;
+    font-weight: 400;
+  }
+
+  .phase-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin: 1rem 0;
+  }
+
+  .phase-table th {
+    text-align: left;
+    color: #c9a84c;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    padding: 6px 10px;
+    border-bottom: 0.5px solid #c9a84c44;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  .phase-table td {
+    padding: 8px 10px;
+    color: #b0ab9c;
+    border-bottom: 0.5px solid #1e1e1e;
+    vertical-align: top;
+  }
+
+  .phase-table td:first-child {
+    color: #f0ece0;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .code-block {
+    background: #111;
+    border: 0.5px solid #2a2a2a;
+    border-left: 2px solid #c9a84c;
+    padding: 1rem 1.25rem;
+    font-size: 11px;
+    line-height: 1.7;
+    color: #888;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block .path { color: #f0ece0; }
+  .code-block .comment { color: #c9a84c88; }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 1rem 0;
+  }
+
+  .feature {
+    background: #111;
+    border: 0.5px solid #1e1e1e;
+    padding: 10px 12px;
+    font-size: 11px;
+    color: #b0ab9c;
+    line-height: 1.5;
+  }
+
+  .feature span {
+    color: #c9a84c;
+    margin-right: 6px;
+  }
+
+  .full-kit {
+    border: 1px solid #c9a84c33;
+    background: #111;
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .full-kit h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #c9a84c;
+    margin-bottom: 0.75rem;
+  }
+
+  .kit-item {
+    font-size: 11px;
+    color: #b0ab9c;
+    padding: 4px 0;
+    border-bottom: 0.5px solid #1e1e1e;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .kit-item::before {
+    content: '→';
+    color: #c9a84c;
+    flex-shrink: 0;
+  }
+
+  .price-tag {
+    display: inline-block;
+    background: #c9a84c;
+    color: #0a0a0a;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 2px 10px;
+    margin-left: 8px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+
+  .footer {
+    text-align: center;
+    padding-top: 1.5rem;
+  }
+
+  .footer .tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #c9a84c;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #555;
+    text-transform: uppercase;
+  }
+
+  .footer-links a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 8px;
+  }
+
+  .ascii-box {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #c9a84c44;
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+</style>
+
+<div class="readme">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="ascii-box">╔══════════════════════════════╗<br>║ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;║<br>╚══════════════════════════════╝</div>
+    <div class="title">HOLD : 24 HOURS</div>
+    <div class="subtitle">A nervous system regulation container</div>
+    <div class="badges">
+      <span class="badge badge-gold">Personal Use License</span>
+      <span class="badge badge-white">Vanilla JS · No dependencies</span>
+      <span class="badge badge-green">● Live</span>
+    </div>
+    <div class="cta-row">
+      <button class="btn btn-outline" onclick="sendPrompt('Help me set up the HOLD repo on GitHub step by step')">→ Try live demo</button>
+      <button class="btn btn-gold" onclick="sendPrompt('Help me write the Gumroad product page for HOLD 24 Hours')">Get the full kit — R150</button>
+    </div>
+  </div>
+
+  <!-- WHAT IS THIS -->
+  <h2>What this is</h2>
+  <p>HOLD: 24 Hours is a <strong>single-day somatic container</strong> — a structured, body-based framework for nervous system regulation that you move through across one full day.</p>
+  <p>It is not a meditation app. It is not a mood tracker. It is a <strong>regulation toolkit</strong> grounded in polyvagal theory, breathwork science, and somatic practice.</p>
+
+  <hr class="gold-divider">
+
+  <!-- THE FRAMEWORK -->
+  <h2>The framework</h2>
+  <table class="phase-table">
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Window</th>
+        <th>Focus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>H — Hold the morning</td><td>06:00–10:00</td><td>Orienting, grounding, baseline check-in</td></tr>
+      <tr><td>O — Open the body</td><td>10:00–14:00</td><td>Movement, breath, posture reset</td></tr>
+      <tr><td>L — Land in the afternoon</td><td>14:00–18:00</td><td>Regulation tools, spike response</td></tr>
+      <tr><td>D — Descend into rest</td><td>18:00–22:00</td><td>Downregulation, sleep preparation</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="gold-divider">
+
+  <!-- FILE STRUCTURE -->
+  <h2>Repo structure</h2>
+  <div class="code-block">
+    <span class="path">hold-24hours/</span><br>
+    ├── <span class="path">index.html</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment">← full standalone app (demo)</span><br>
+    ├── <span class="path">app.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment">← check-in logic, spike detection</span><br>
+    ├── <span class="path">breathwork.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment">← 6 breath techniques with timers</span><br>
+    ├── <span class="path">posture.js</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment">← posture scanning tool</span><br>
+    ├── <span class="path">styles.css</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment">← black, white, warm ivory UI</span><br>
+    ├── <span class="path">manifest.json</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment">← PWA manifest</span><br>
+    └── <span class="path">docs/</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="path">HOLD-METHOD.md</span> &nbsp;&nbsp;&nbsp;<span class="comment">← the framework</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="path">POLYVAGAL.md</span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="comment">← science references</span>
+  </div>
+
+  <hr class="gold-divider">
+
+  <!-- FEATURES -->
+  <h2>Features (demo)</h2>
+  <div class="feature-grid">
+    <div class="feature"><span>✦</span>Body check-in wizard — 5-slider autonomic state assessment</div>
+    <div class="feature"><span>✦</span>Breath Alchemy — box breath, physiological sigh, 4-7-8</div>
+    <div class="feature"><span>✦</span>Posture scanning with regulation prompts</div>
+    <div class="feature"><span>✦</span>Spike detection — identifies dysregulation moments</div>
+    <div class="feature"><span>✦</span>localStorage persistence — state saves between sessions</div>
+    <div class="feature"><span>✦</span>PWA ready — install to home screen, works offline</div>
+  </div>
+
+  <hr class="gold-divider">
+
+  <!-- FULL KIT -->
+  <div class="full-kit">
+    <h3>Full kit includes <span class="price-tag">R150</span></h3>
+    <div class="kit-item">Complete guided 24-hour schedule with time-locked tools</div>
+    <div class="kit-item">Claude API integration — somatic reframing on demand</div>
+    <div class="kit-item">Autonomic blueprint generator (your personal baseline map)</div>
+    <div class="kit-item">Daily spike overlay with regulation response suggestions</div>
+    <div class="kit-item">The HOLD Method ebook — polyvagal theory + neuroscience</div>
+    <div class="kit-item">Lifetime updates</div>
+    <br>
+    <button class="btn btn-gold" style="width:100%;text-align:center;" onclick="sendPrompt('Help me write the Gumroad product page for HOLD 24 Hours full kit')">→ Buy on Gumroad — R150</button>
+  </div>
+
+  <hr class="gold-divider">
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="tagline">"The body knows. This is how you listen."</div>
+    <div class="footer-links">
+      <a href="#">theholdmethod.com</a> ·
+      <a href="#">Gumroad</a> ·
+      <a href="#">GitHub Sponsors</a>
+    </div>
+  </div>
+
+</div>
