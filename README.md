@@ -1,4 +1,6 @@
-# Auth-Sol# Maretha du Toit — Builder, Somatic Practitioner, Founder
+# Auth-Sol# 
+
+Maretha du Toit — Builder, Somatic Practitioner, Founder
 
 > *I build tools that regulate, connect, and sustain.*
 
